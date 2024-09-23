@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List of Authors</title>
+</head>
+<body>
+<h1>List of Authors</h1>
+
+{% if authors is defined and authors|length > 0 %}
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Email</th>
+            <th>Books</th>
+            <th>Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set totalBooks = 0 %}
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.name|upper }}</td>
+                <td><img src="{{ asset(author.image) }}" alt="{{ author.name }}" width="150"></td>
+                <td>{{ author.email }}</td>
+                <td>{{ author.books }}</td>
+                <td><a href="{{ path('author_show', { name: author.name }) }}">Details</a></td>
+            </tr>
+            {% set totalBooks = totalBooks + (author.books|default(0)) %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <p>Total authors: {{ authors|length }}</p>
+    <p>Total books: {{ totalBooks }}</p>
+{% else %}
+    <p>No authors found.</p>
+{% endif %}
+</body>
+</html>
