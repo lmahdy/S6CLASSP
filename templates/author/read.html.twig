@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List of Authors</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<h1>List of Authors</h1>
+
+{% if authors is defined and authors|length > 0 %}
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.getUsername()|upper }}</td> <!-- Display author's username in uppercase -->
+                <td>{{ author.getEmail() }}</td> <!-- Display author's email -->
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <p>Total authors: {{ authors|length }}</p> <!-- Show the total number of authors -->
+{% else %}
+    <p>No authors found.</p>
+{% endif %}
+</body>
+</html>
