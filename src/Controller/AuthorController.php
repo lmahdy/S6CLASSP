@@ -29,7 +29,7 @@ class AuthorController extends AbstractController
             $entityManager->flush();
 
             // Redirect to the author list or show a success message
-            return $this->redirectToRoute('author_list'); // Adjust this to your desired route
+            return $this->redirectToRoute('author_read');
         }
 
         // Render the form
@@ -96,5 +96,40 @@ class AuthorController extends AbstractController
         return $this->render('author/read.html.twig', [
             'authors' => $list,
         ]);
+    }
+
+    // This route displays the form to edit an existing author
+    #[Route('/author/edit/{id}', name: 'author_edit')]
+    public function editAuthor(Request $request, Author $author, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(AuthorType::class, $author);
+
+        // Handle form submission
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Update the author in the database
+            $entityManager->flush();
+
+            // Redirect to the author list or show a success message
+            return $this->redirectToRoute('author_read');
+        }
+
+        // Render the form
+        return $this->render('author/edit.html.twig', [
+            'form' => $form->createView(),
+            'author' => $author,
+        ]);
+    }
+
+    // This route deletes an author
+    #[Route('/author/delete/{id}', name: 'author_delete')]
+    public function deleteAuthor(Author $author, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($author);
+        $entityManager->flush();
+
+        // Redirect to the author list or show a success message
+        return $this->redirectToRoute('author_read');
     }
 }
