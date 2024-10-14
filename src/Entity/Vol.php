@@ -18,14 +18,14 @@ class Vol
     private ?string $villeDestination = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $dateDeDépart = null;
+    private ?\DateTimeInterface $dateDeDepart = null; // Updated field name
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $dateDArrivée = null;
+    private ?\DateTimeInterface $dateDArrivee = null; // Updated field name
 
     #[ORM\ManyToOne(targetEntity: Aeroport::class, inversedBy: 'vols')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Aeroport $aeroport = null; // New property for the relation
+    private ?Aeroport $aeroport = null;
 
     public function getId(): ?int
     {
@@ -44,26 +44,26 @@ class Vol
         return $this;
     }
 
-    public function getDateDeDépart(): ?\DateTimeInterface
+    public function getDateDeDepart(): ?\DateTimeInterface // Updated getter
     {
-        return $this->dateDeDépart;
+        return $this->dateDeDepart;
     }
 
-    public function setDateDeDépart(?\DateTimeInterface $dateDeDépart): static
+    public function setDateDeDepart(?\DateTimeInterface $dateDeDepart): static // Updated setter
     {
-        $this->dateDeDépart = $dateDeDépart;
+        $this->dateDeDepart = $dateDeDepart;
 
         return $this;
     }
 
-    public function getDateDArrivée(): ?\DateTimeInterface
+    public function getDateDArrivee(): ?\DateTimeInterface // Updated getter
     {
-        return $this->dateDArrivée;
+        return $this->dateDArrivee;
     }
 
-    public function setDateDArrivée(?\DateTimeInterface $dateDArrivée): static
+    public function setDateDArrivee(?\DateTimeInterface $dateDArrivee): static // Updated setter
     {
-        $this->dateDArrivée = $dateDArrivée;
+        $this->dateDArrivee = $dateDArrivee;
 
         return $this;
     }

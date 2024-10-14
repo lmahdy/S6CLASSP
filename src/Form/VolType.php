@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Vol;
-use App\Entity\Aeroport; // Import Aeroport
+use App\Entity\Aeroport;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -19,17 +19,17 @@ class VolType extends AbstractType
             ->add('villeDestination', TextType::class, [
                 'label' => 'Ville de Destination',
             ])
-            ->add('dateDeDépart', DateTimeType::class, [
+            ->add('dateDeDepart', DateTimeType::class, [ // Updated field name
                 'label' => 'Date de Départ',
                 'widget' => 'single_text',
             ])
-            ->add('dateDArrivée', DateTimeType::class, [
+            ->add('dateDArrivee', DateTimeType::class, [ // Updated field name
                 'label' => 'Date d\'Arrivée',
                 'widget' => 'single_text',
             ])
             ->add('aeroport', EntityType::class, [
                 'class' => Aeroport::class,
-                'choice_label' => 'nom', // Display the name of the airport
+                'choice_label' => 'nom',
                 'label' => 'Aéroport',
             ]);
     }
