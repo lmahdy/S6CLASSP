@@ -40,4 +40,24 @@ class BookController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+
+    // Add this in your BookController
+
+    #[Route('/book/list', name: 'app_book_list')]
+    public function list(EntityManagerInterface $entityManager): Response
+    {
+        // Fetch all published books
+        $publishedBooks = $entityManager->getRepository(Book::class)->findBy(['published' => true]);
+
+        // Fetch all unpublished books for the count
+        $unpublishedBooks = $entityManager->getRepository(Book::class)->findBy(['published' => false]);
+
+        return $this->render('book/list.html.twig', [
+            'publishedBooks' => $publishedBooks,
+            'unpublishedBooksCount' => count($unpublishedBooks),
+            'publishedBooksCount' => count($publishedBooks),
+        ]);
+    }
+
 }

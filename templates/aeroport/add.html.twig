@@ -1,0 +1,15 @@
+{# templates/aeroport/add.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un Aéroport{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un Aéroport</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">Ajouter</button>
+    {{ form_end(form) }}
+
+{% endblock %}

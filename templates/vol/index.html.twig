@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Vols{% endblock %}
+
+{% block body %}
+    <h1>Liste des Vols</h1>
+    <a href="{{ path('app_vol_add') }}">Ajouter un Vol</a>
+
+    <ul>
+        {% for vol in vols %}
+            <li>
+                {{ vol.villeDestination }} - Départ: {{ vol.dateDeDépart|date('Y-m-d H:i') }} - Arrivée: {{ vol.dateDArrivée|date('Y-m-d H:i') }} - Aéroport: {{ vol.aeroport.nom }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
