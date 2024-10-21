@@ -40,4 +40,27 @@ class BookRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    // lets create tri function
+    public function tri()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT b FROM App\Entity\Book b ORDER BY b.title ASC'
+        );
+
+        return $query->getResult();
+    }
+
+    public function searchByTitle($title)
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.title LIKE :title')
+            ->setParameter('title', '%' . $title . '%')
+            ->orderBy('b.title', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
 }

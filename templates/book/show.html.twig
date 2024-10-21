@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book Details{% endblock %}
+
+{% block body %}
+    <h1>Book Details</h1>
+
+    <ul>
+        <li><strong>Title of Book:</strong> {{ book.title }}</li>
+        <li><strong>Publication Date:</strong> {{ book.publicationDate ? book.publicationDate|date('F j, Y H:i') : 'N/A' }}</li>
+        <li><strong>Author:</strong> {{ book.author ? book.author.username : 'Unknown' }}</li>
+        <li><strong>Category:</strong> {{ book.category }}</li>
+        <li><strong>Published:</strong> {{ book.published ? 'Yes' : 'No' }}</li>
+    </ul>
+
+    <a href="{{ path('app_book_list') }}">Back to list</a>
+{% endblock %}

@@ -29,7 +29,7 @@ class Book
     private ?Author $author = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $category = null; // Add this line
+    private ?string $category = null;
 
     public function getId(): ?int
     {
@@ -80,12 +80,12 @@ class Book
         return $this;
     }
 
-    public function getCategory(): ?string // Add this getter
+    public function getCategory(): ?string
     {
         return $this->category;
     }
 
-    public function setCategory(string $category): static // Add this setter
+    public function setCategory(string $category): static
     {
         $this->category = $category;
         return $this;

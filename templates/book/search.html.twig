@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Search Results for "{{ searchTerm }}"</h1>
+
+    <ul>
+        {% for book in books %}
+            <li>{{ book.title }} by {{ book.author.name }}</li>
+        {% else %}
+            <li>No books found.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('app_book_list') }}">Back to book list</a>
+{% endblock %}
